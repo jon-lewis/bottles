@@ -66,3 +66,21 @@ func TestVerseZero(t *testing.T) {
 		t.Error("Actual value did not equal expected", actual)
 	}
 }
+
+func TestACoupleVerses(t *testing.T) {
+	expected := "99 bottles of beer on the wall, " +
+		"99 bottles of beer.\n" +
+		"Take one down and pass it around, " +
+		"98 bottles of beer on the wall.\n" +
+		"\n" +
+		"98 bottles of beer on the wall, " +
+		"98 bottles of beer.\n" +
+		"Take one down and pass it around, " +
+		"97 bottles of beer on the wall.\n"
+
+	actual := Bottle{}.verses(99, 98)
+
+	if actual != expected {
+		t.Error("Actual value did not equal expected. Actual:", actual, "\nExpected:", expected)
+	}
+}
