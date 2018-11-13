@@ -1,9 +1,6 @@
 package bottles
 
-import (
-	"fmt"
-	"strconv"
-)
+import "fmt"
 
 // Bottle is used to construct the verses in the 99 bottles song.
 type Bottle struct{}
@@ -24,37 +21,30 @@ func (b Bottle) verses(x int, y int) string {
 
 // Verse method sings the 99 bottles song
 func (b Bottle) verse(x int) string {
-	bottleDescription := "bottles"
-	nextBottleDescription := "bottles"
-	itOrOne := "one"
-	startOfLastLine := strconv.Itoa(x - 1)
+	verse := ""
 
-	if x-1 == 1 {
-		nextBottleDescription = "bottle"
-	} else if x-1 == 0 {
-		itOrOne = "it"
-		bottleDescription = "bottle"
-		startOfLastLine = "no more"
-	}
-
-	song := fmt.Sprintf("%d %s of beer on the wall, "+
-		"%d %s of beer.\n"+
-		"Take %s down and pass it around, "+
-		"%s %s of beer on the wall.\n",
-		x,
-		bottleDescription,
-		x,
-		bottleDescription,
-		itOrOne,
-		startOfLastLine,
-		nextBottleDescription)
-
-	if x == 0 {
-		song = "No more bottles of beer on the wall, " +
+	if x > 2 {
+		verse = fmt.Sprintf("%d bottles of beer on the wall, "+
+			"%d bottles of beer.\n"+
+			"Take one down and pass it around, "+
+			"%d bottles of beer on the wall.\n",
+			x, x, x-1)
+	} else if x == 2 {
+		verse = "2 bottles of beer on the wall, " +
+			"2 bottles of beer.\n" +
+			"Take one down and pass it around, " +
+			"1 bottle of beer on the wall.\n"
+	} else if x == 1 {
+		verse = "1 bottle of beer on the wall, " +
+			"1 bottle of beer.\n" +
+			"Take it down and pass it around, " +
+			"no more bottles of beer on the wall.\n"
+	} else if x == 0 {
+		verse = "No more bottles of beer on the wall, " +
 			"no more bottles of beer.\n" +
 			"Go to the store and buy some more, " +
 			"99 bottles of beer on the wall.\n"
 	}
 
-	return song
+	return verse
 }
