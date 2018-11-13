@@ -20,26 +20,26 @@ func (b Bottle) verses(x int, y int) string {
 }
 
 // Verse method sings the 99 bottles song
-func (b Bottle) verse(x int) string {
+func (b Bottle) verse(number int) string {
 	verse := ""
 
-	if x > 2 {
+	if number > 2 {
 		verse = fmt.Sprintf("%d bottles of beer on the wall, "+
 			"%d bottles of beer.\n"+
 			"Take one down and pass it around, "+
 			"%d bottles of beer on the wall.\n",
-			x, x, x-1)
-	} else if x == 2 {
+			number, number, number-1)
+	} else if number == 2 {
 		verse = "2 bottles of beer on the wall, " +
 			"2 bottles of beer.\n" +
 			"Take one down and pass it around, " +
 			"1 bottle of beer on the wall.\n"
-	} else if x == 1 {
+	} else if number == 1 {
 		verse = "1 bottle of beer on the wall, " +
 			"1 bottle of beer.\n" +
 			"Take it down and pass it around, " +
 			"no more bottles of beer on the wall.\n"
-	} else if x == 0 {
+	} else if number == 0 {
 		verse = "No more bottles of beer on the wall, " +
 			"no more bottles of beer.\n" +
 			"Go to the store and buy some more, " +
