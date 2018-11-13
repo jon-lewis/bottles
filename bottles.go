@@ -8,6 +8,10 @@ import (
 // Bottle is used to construct the verses in the 99 bottles song.
 type Bottle struct{}
 
+func (b Bottle) song() string {
+	return b.verses(99, 0)
+}
+
 func (b Bottle) verses(x int, y int) string {
 	song := b.verse(x)
 
