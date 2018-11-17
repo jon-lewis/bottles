@@ -27,17 +27,30 @@ func (b Bottle) verse(number int) string {
 			"no more bottles of beer.\n" +
 			"Go to the store and buy some more, " +
 			"99 bottles of beer on the wall.\n"
-	case 1:
-		return "1 bottle of beer on the wall, " +
-			"1 bottle of beer.\n" +
-			"Take it down and pass it around, " +
-			"no more bottles of beer on the wall.\n"
 	default:
-		return fmt.Sprintf("%d bottles of beer on the wall, "+
-			"%d bottles of beer.\n"+
-			"Take one down and pass it around, "+
-			"%d %s of beer on the wall.\n",
-			number, number, number-1, container(number-1))
+		return fmt.Sprintf("%d %s of beer on the wall, "+
+			"%d %s of beer.\n"+
+			"Take %s down and pass it around, "+
+			"%s %s of beer on the wall.\n",
+			number, container(number), number, container(number), pronoun(number), quantity(number-1), container(number-1))
+	}
+}
+
+func quantity(number int) string {
+	switch number {
+	case 0:
+		return "no more"
+	default:
+		return fmt.Sprintf("%d", number)
+	}
+}
+
+func pronoun(number int) string {
+	switch number {
+	case 1:
+		return "it"
+	default:
+		return "one"
 	}
 }
 
