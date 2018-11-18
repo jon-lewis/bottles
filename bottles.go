@@ -1,6 +1,10 @@
 package bottles
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+	"unicode"
+)
 
 // Bottle is used to construct the verses in the 99 bottles song.
 type Bottle struct{}
@@ -21,18 +25,31 @@ func (b Bottle) verses(x int, y int) string {
 
 // Verse method sings the 99 bottles song
 func (b Bottle) verse(number int) string {
+	return fmt.Sprintf("%s %s of beer on the wall, "+
+		"%s %s of beer.\n"+
+		"%s"+
+		"%s %s of beer on the wall.\n",
+		capitalize(quantity(number)), container(number),
+		quantity(number), container(number),
+		action(number),
+		quantity(successor(number)), container(successor(number)))
+}
+
+func successor(number int) int {
 	switch number {
 	case 0:
-		return "No more bottles of beer on the wall, " +
-			"no more bottles of beer.\n" +
-			"Go to the store and buy some more, " +
-			"99 bottles of beer on the wall.\n"
+		return 99
 	default:
-		return fmt.Sprintf("%d %s of beer on the wall, "+
-			"%d %s of beer.\n"+
-			"Take %s down and pass it around, "+
-			"%s %s of beer on the wall.\n",
-			number, container(number), number, container(number), pronoun(number), quantity(number-1), container(number-1))
+		return number - 1
+	}
+}
+
+func action(number int) string {
+	switch number {
+	case 0:
+		return "Go to the store and buy some more, "
+	default:
+		return fmt.Sprintf("Take %s down and pass it around, ", pronoun(number))
 	}
 }
 
@@ -61,4 +78,17 @@ func container(number int) string {
 	default:
 		return "bottles"
 	}
+}
+
+func capitalize(s string) string {
+	first := true
+	return strings.Map(
+		func(r rune) rune {
+			if first {
+				first = false
+				return unicode.ToUpper(r)
+			}
+			return r
+		},
+		s)
 }
