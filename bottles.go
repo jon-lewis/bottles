@@ -25,57 +25,15 @@ func (b Bottle) verses(x int, y int) string {
 
 // Verse method sings the 99 bottles song
 func (b Bottle) verse(number int) string {
+	bn := BottleNumber{number}
+	sbn := BottleNumber{bn.successor()}
+
 	return fmt.Sprintf("%s %s of beer on the wall, "+
 		"%s %s of beer.\n"+
 		"%s"+
 		"%s %s of beer on the wall.\n",
-		words.Capitalize(quantity(number)), container(number),
-		quantity(number), container(number),
-		action(number),
-		quantity(successor(number)), container(successor(number)))
-}
-
-func successor(number int) int {
-	switch number {
-	case 0:
-		return 99
-	default:
-		return number - 1
-	}
-}
-
-func action(number int) string {
-	switch number {
-	case 0:
-		return "Go to the store and buy some more, "
-	default:
-		return fmt.Sprintf("Take %s down and pass it around, ", pronoun(number))
-	}
-}
-
-func quantity(number int) string {
-	switch number {
-	case 0:
-		return "no more"
-	default:
-		return fmt.Sprintf("%d", number)
-	}
-}
-
-func pronoun(number int) string {
-	switch number {
-	case 1:
-		return "it"
-	default:
-		return "one"
-	}
-}
-
-func container(number int) string {
-	switch number {
-	case 1:
-		return "bottle"
-	default:
-		return "bottles"
-	}
+		words.Capitalize(bn.quantity()), bn.container(),
+		bn.quantity(), bn.container(),
+		bn.action(),
+		sbn.quantity(), sbn.container())
 }
