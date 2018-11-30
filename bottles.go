@@ -2,8 +2,8 @@ package bottles
 
 import (
 	"fmt"
-	"strings"
-	"unicode"
+
+	"github.com/jon-lewis/words"
 )
 
 // Bottle is used to construct the verses in the 99 bottles song.
@@ -29,7 +29,7 @@ func (b Bottle) verse(number int) string {
 		"%s %s of beer.\n"+
 		"%s"+
 		"%s %s of beer on the wall.\n",
-		capitalize(quantity(number)), container(number),
+		words.Capitalize(quantity(number)), container(number),
 		quantity(number), container(number),
 		action(number),
 		quantity(successor(number)), container(successor(number)))
@@ -78,17 +78,4 @@ func container(number int) string {
 	default:
 		return "bottles"
 	}
-}
-
-func capitalize(s string) string {
-	first := true
-	return strings.Map(
-		func(r rune) rune {
-			if first {
-				first = false
-				return unicode.ToUpper(r)
-			}
-			return r
-		},
-		s)
 }
