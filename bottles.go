@@ -28,12 +28,12 @@ func (bottle Bottle) verse(number int) string {
 	bottleNumber := BottleNumber{number}
 	nextBottleNumber := BottleNumber{bottleNumber.successor()}
 
-	return fmt.Sprintf("%s %s of beer on the wall, "+
-		"%s %s of beer.\n"+
+	return fmt.Sprintf("%s of beer on the wall, "+
+		"%s of beer.\n"+
 		"%s"+
-		"%s %s of beer on the wall.\n",
-		words.Capitalize(bottleNumber.quantity()), bottleNumber.container(),
-		bottleNumber.quantity(), bottleNumber.container(),
+		"%s of beer on the wall.\n",
+		words.Capitalize(bottleNumber.String()),
+		bottleNumber,
 		bottleNumber.action(),
-		nextBottleNumber.quantity(), nextBottleNumber.container())
+		nextBottleNumber)
 }

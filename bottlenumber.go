@@ -51,3 +51,10 @@ func (bottleNumber BottleNumber) container() string {
 		return "bottles"
 	}
 }
+
+// String method is used by fmt to get the string representation of the given type.
+func (bottleNumber BottleNumber) String() string {
+	return fmt.Sprintf("%s %s",
+		bottleNumber.quantity(),
+		bottleNumber.container())
+}
