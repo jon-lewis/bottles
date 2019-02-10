@@ -2,11 +2,8 @@ package bottles
 
 import "fmt"
 
-// bottleNumberFactory contains methods for creating BottleNumbers.
-type bottleNumberFactory struct{}
-
 // newBottleNumber creates a new BottleNumber based on the number passed in.
-func (f bottleNumberFactory) newBottleNumber(n int) bottleNumber {
+func newBottleNumber(n int) bottleNumber {
 	switch n {
 	case 0:
 		return bottleNumber{successorer0{}, actioner0{}, quantityer0{}, containererDefault{}}
@@ -41,7 +38,7 @@ func (b bottleNumber) container() string {
 	return b.containerer.container()
 }
 
-// toString method is used by fmt to get the toString representation of the given type.
+// String method is used by fmt to get the toString representation of the given type.
 func (b bottleNumber) String() string {
 	return fmt.Sprintf("%s %s",
 		b.quantity(),
