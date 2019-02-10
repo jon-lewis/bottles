@@ -19,9 +19,11 @@ func (b BottleNumber) successor() int {
 func (b BottleNumber) action() string {
 	switch b.number {
 	case 0:
-		return "Go to the store and buy some more, "
+		return actioner0{}.action()
+	case 1:
+		return actionerDefault{pronouner1{}}.action()
 	default:
-		return fmt.Sprintf("Take %s down and pass it around, ", b.pronoun())
+		return actionerDefault{pronounerDefault{}}.action()
 	}
 }
 
@@ -31,15 +33,6 @@ func (b BottleNumber) quantity() string {
 		return "no more"
 	default:
 		return fmt.Sprintf("%d", b.number)
-	}
-}
-
-func (b BottleNumber) pronoun() string {
-	switch b.number {
-	case 1:
-		return pronouner1{}.pronoun()
-	default:
-		return pronounerDefault{}.pronoun()
 	}
 }
 
