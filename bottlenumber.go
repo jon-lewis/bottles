@@ -10,9 +10,9 @@ type BottleNumber struct {
 func (b BottleNumber) successor() int {
 	switch b.number {
 	case 0:
-		return 99
+		return successorer0{}.successor()
 	default:
-		return b.number - 1
+		return successorerDefault{b.number}.successor()
 	}
 }
 
