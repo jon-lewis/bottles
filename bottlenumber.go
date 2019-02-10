@@ -39,9 +39,9 @@ func (b BottleNumber) quantity() string {
 func (b BottleNumber) container() string {
 	switch b.number {
 	case 1:
-		return "bottle"
+		return containerer0{}.container()
 	default:
-		return "bottles"
+		return containererDefault{}.container()
 	}
 }
 
