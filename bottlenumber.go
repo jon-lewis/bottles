@@ -37,9 +37,9 @@ func (b BottleNumber) quantity() string {
 func (b BottleNumber) pronoun() string {
 	switch b.number {
 	case 1:
-		return "it"
+		return pronouner1{}.pronoun()
 	default:
-		return "one"
+		return pronounerDefault{}.pronoun()
 	}
 }
 
