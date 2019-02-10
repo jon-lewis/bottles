@@ -4,9 +4,9 @@ type containerer interface {
 	container() string
 }
 
-type containerer0 struct{}
+type containerer1 struct{}
 
-func (c containerer0) container() string {
+func (c containerer1) container() string {
 	return "bottle"
 }
 

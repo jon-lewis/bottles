@@ -2,47 +2,44 @@ package bottles
 
 import "fmt"
 
+// BottleNumberFactory contains methods for creating BottleNumbers.
+type BottleNumberFactory struct{}
+
+// NewBottleNumber creates a new BottleNumber based on the number passed in.
+func (f BottleNumberFactory) NewBottleNumber(n int) BottleNumber {
+	switch n {
+	case 0:
+		return BottleNumber{n, successorer0{}, actioner0{}, quantityer0{}, containererDefault{}}
+	case 1:
+		return BottleNumber{n, successorerDefault{n}, actionerDefault{pronouner1{}}, quantityerDefault{n}, containerer1{}}
+	default:
+		return BottleNumber{n, successorerDefault{n}, actionerDefault{pronounerDefault{}}, quantityerDefault{n}, containererDefault{}}
+	}
+}
+
 // BottleNumber contains methods to describe the current number of bottles.
 type BottleNumber struct {
-	number int
+	number      int
+	successorer successorer
+	actioner    actioner
+	quantityer  quantityer
+	containerer containerer
 }
 
 func (b BottleNumber) successor() int {
-	switch b.number {
-	case 0:
-		return successorer0{}.successor()
-	default:
-		return successorerDefault{b.number}.successor()
-	}
+	return b.successorer.successor()
 }
 
 func (b BottleNumber) action() string {
-	switch b.number {
-	case 0:
-		return actioner0{}.action()
-	case 1:
-		return actionerDefault{pronouner1{}}.action()
-	default:
-		return actionerDefault{pronounerDefault{}}.action()
-	}
+	return b.actioner.action()
 }
 
 func (b BottleNumber) quantity() string {
-	switch b.number {
-	case 0:
-		return quantityer0{}.quantity()
-	default:
-		return quantityerDefault{b.number}.quantity()
-	}
+	return b.quantityer.quantity()
 }
 
 func (b BottleNumber) container() string {
-	switch b.number {
-	case 1:
-		return containerer0{}.container()
-	default:
-		return containererDefault{}.container()
-	}
+	return b.containerer.container()
 }
 
 // String method is used by fmt to get the string representation of the given type.
