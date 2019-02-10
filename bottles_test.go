@@ -28,6 +28,32 @@ func TestAnotherVerse(t *testing.T) {
 	}
 }
 
+func TestVerseSeven(t *testing.T) {
+	expected := "7 bottles of beer on the wall, " +
+		"7 bottles of beer.\n" +
+		"Take one down and pass it around, " +
+		"1 six-pack of beer on the wall.\n"
+
+	actual := Bottle{}.verse(7)
+
+	if actual != expected {
+		t.Error("Actual value did not equal expected", actual)
+	}
+}
+
+func TestVerseSix(t *testing.T) {
+	expected := "1 six-pack of beer on the wall, " +
+		"1 six-pack of beer.\n" +
+		"Take one down and pass it around, " +
+		"5 bottles of beer on the wall.\n"
+
+	actual := Bottle{}.verse(6)
+
+	if actual != expected {
+		t.Error("Actual value did not equal expected", actual)
+	}
+}
+
 func TestVerseTwo(t *testing.T) {
 	expected := "2 bottles of beer on the wall, " +
 		"2 bottles of beer.\n" +
@@ -394,9 +420,9 @@ Take one down and pass it around, 8 bottles of beer on the wall.
 Take one down and pass it around, 7 bottles of beer on the wall.
 
 7 bottles of beer on the wall, 7 bottles of beer.
-Take one down and pass it around, 6 bottles of beer on the wall.
+Take one down and pass it around, 1 six-pack of beer on the wall.
 
-6 bottles of beer on the wall, 6 bottles of beer.
+1 six-pack of beer on the wall, 1 six-pack of beer.
 Take one down and pass it around, 5 bottles of beer on the wall.
 
 5 bottles of beer on the wall, 5 bottles of beer.

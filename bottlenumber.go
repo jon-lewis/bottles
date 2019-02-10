@@ -9,6 +9,8 @@ func newBottleNumber(n int) bottleNumber {
 		return bottleNumber{successorer0{}, actioner0{}, quantityer0{}, containererDefault{}}
 	case 1:
 		return bottleNumber{successorerDefault{n}, actionerDefault{pronouner1{}}, quantityerDefault{n}, containerer1{}}
+	case 6:
+		return bottleNumber{successorerDefault{n}, actionerDefault{pronounerDefault{}}, quantityer6{}, containerer6{}}
 	default:
 		return bottleNumber{successorerDefault{n}, actionerDefault{pronounerDefault{}}, quantityerDefault{n}, containererDefault{}}
 	}
