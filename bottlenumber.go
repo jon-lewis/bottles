@@ -30,9 +30,9 @@ func (b BottleNumber) action() string {
 func (b BottleNumber) quantity() string {
 	switch b.number {
 	case 0:
-		return "no more"
+		return quantityer0{}.quantity()
 	default:
-		return fmt.Sprintf("%d", b.number)
+		return quantityerDefault{b.number}.quantity()
 	}
 }
 
