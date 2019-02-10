@@ -2,59 +2,47 @@ package bottles
 
 import "fmt"
 
-// BottleNumber contains methods to describe the current number of bottles.
-type BottleNumber struct {
-	number int
-}
-
-func (bottleNumber BottleNumber) successor() int {
-	switch bottleNumber.number {
+// newBottleNumber creates a new BottleNumber based on the number passed in.
+func newBottleNumber(n int) bottleNumber {
+	switch n {
 	case 0:
-		return 99
-	default:
-		return bottleNumber.number - 1
-	}
-}
-
-func (bottleNumber BottleNumber) action() string {
-	switch bottleNumber.number {
-	case 0:
-		return "Go to the store and buy some more, "
-	default:
-		return fmt.Sprintf("Take %s down and pass it around, ", bottleNumber.pronoun())
-	}
-}
-
-func (bottleNumber BottleNumber) quantity() string {
-	switch bottleNumber.number {
-	case 0:
-		return "no more"
-	default:
-		return fmt.Sprintf("%d", bottleNumber.number)
-	}
-}
-
-func (bottleNumber BottleNumber) pronoun() string {
-	switch bottleNumber.number {
+		return bottleNumber{successorer0{}, actioner0{}, quantityer0{}, containererDefault{}}
 	case 1:
-		return "it"
+		return bottleNumber{successorerDefault{n}, actionerDefault{pronouner1{}}, quantityerDefault{n}, containerer1{}}
+	case 6:
+		return bottleNumber{successorerDefault{n}, actionerDefault{pronounerDefault{}}, quantityer6{}, containerer6{}}
 	default:
-		return "one"
+		return bottleNumber{successorerDefault{n}, actionerDefault{pronounerDefault{}}, quantityerDefault{n}, containererDefault{}}
 	}
 }
 
-func (bottleNumber BottleNumber) container() string {
-	switch bottleNumber.number {
-	case 1:
-		return "bottle"
-	default:
-		return "bottles"
-	}
+// bottleNumber contains methods to describe the current number of bottles.
+type bottleNumber struct {
+	successorer successorer
+	actioner    actioner
+	quantityer  quantityer
+	containerer containerer
 }
 
-// String method is used by fmt to get the string representation of the given type.
-func (bottleNumber BottleNumber) String() string {
+func (b bottleNumber) successor() bottleNumber {
+	return b.successorer.successor()
+}
+
+func (b bottleNumber) action() string {
+	return b.actioner.action()
+}
+
+func (b bottleNumber) quantity() string {
+	return b.quantityer.quantity()
+}
+
+func (b bottleNumber) container() string {
+	return b.containerer.container()
+}
+
+// String method is used by fmt to get the toString representation of the given type.
+func (b bottleNumber) String() string {
 	return fmt.Sprintf("%s %s",
-		bottleNumber.quantity(),
-		bottleNumber.container())
+		b.quantity(),
+		b.container())
 }

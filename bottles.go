@@ -25,8 +25,7 @@ func (bottle Bottle) verses(x int, y int) string {
 
 // Verse method sings the 99 bottles song
 func (bottle Bottle) verse(number int) string {
-	bottleNumber := BottleNumber{number}
-	nextBottleNumber := BottleNumber{bottleNumber.successor()}
+	bottleNumber := newBottleNumber(number)
 
 	return fmt.Sprintf("%s of beer on the wall, "+
 		"%s of beer.\n"+
@@ -35,5 +34,5 @@ func (bottle Bottle) verse(number int) string {
 		words.Capitalize(bottleNumber.String()),
 		bottleNumber,
 		bottleNumber.action(),
-		nextBottleNumber)
+		bottleNumber.successor())
 }
