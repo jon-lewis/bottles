@@ -22,7 +22,7 @@ type bottleNumber struct {
 	containerer containerer
 }
 
-func (b bottleNumber) successor() int {
+func (b bottleNumber) successor() bottleNumber {
 	return b.successorer.successor()
 }
 
